@@ -4,14 +4,26 @@ export interface AgentRowProps {
   role: string;
   status: "online" | "warning";
   active?: boolean;
+  inMeeting?: boolean;
+  onClick?: () => void;
 }
 
-export function AgentRow({ code, name, role, status, active }: AgentRowProps) {
+export function AgentRow({
+  code,
+  name,
+  role,
+  status,
+  active,
+  inMeeting,
+  onClick,
+}: AgentRowProps) {
   const isWarning = status === "warning";
 
   return (
-    <div
-      className={`group flex items-center gap-[9px] rounded-[6px] border px-[9px] py-[7px] transition-colors ${
+    <button
+      type="button"
+      onClick={onClick}
+      className={`group flex w-full items-center gap-[9px] rounded-[6px] border px-[9px] py-[7px] text-left transition-colors ${
         active
           ? "border-[#c5d2f7] bg-[#eff4ff]"
           : "border-transparent hover:border-[#e8e8e4] hover:bg-[#f5f5f3]"
@@ -29,7 +41,9 @@ export function AgentRow({ code, name, role, status, active }: AgentRowProps) {
       {/* Identité */}
       <div className="min-w-0 flex-1">
         <p className="truncate text-[11px] font-[600] text-[#1a1a1a]">{name}</p>
-        <p className="truncate text-[9px] font-[400] text-[#aaa]">{role}</p>
+        <p className="truncate text-[9px] font-[400] text-[#aaa]">
+          {inMeeting ? "En réunion" : role}
+        </p>
       </div>
 
       {/* Dot statut */}
@@ -37,6 +51,6 @@ export function AgentRow({ code, name, role, status, active }: AgentRowProps) {
         className="h-[6px] w-[6px] shrink-0 rounded-full"
         style={{ backgroundColor: isWarning ? "#f59e0b" : "#22c55e" }}
       />
-    </div>
+    </button>
   );
 }

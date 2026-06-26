@@ -17,11 +17,13 @@ export function ToolRow({ name, status, last }: ToolRowProps) {
         borderBottom: last ? "none" : "1px solid #f0f0ec",
       }}
     >
-      <span style={{ fontWeight: 500, color: "#555" }}>{name}</span>
+      <span style={{ fontSize: "11px", fontWeight: 500, color: "#555" }}>
+        {name}
+      </span>
       <span
         style={{
-          fontSize: "9px",
-          fontWeight: 600,
+          fontSize: "10px",
+          fontWeight: 700,
           color: isWarning ? "#d97706" : "#16a34a",
         }}
       >

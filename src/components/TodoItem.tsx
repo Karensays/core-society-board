@@ -72,8 +72,8 @@ export function TodoItem({
           <span
             className={
               isDone
-                ? "text-[11px] font-[400] text-[#bbb] line-through"
-                : "text-[11px] font-[500] text-ink"
+                ? "text-[12px] font-[400] text-[#bbb] line-through"
+                : "text-[12px] font-[500] text-ink"
             }
           >
             {text}
@@ -81,7 +81,7 @@ export function TodoItem({
 
           {tag && (
             <span
-              className="rounded-[4px] px-1.5 py-0.5 text-[9px] font-[600]"
+              className="rounded-[4px] px-1.5 py-0.5 text-[9px] font-[700] tracking-[0.03em]"
               style={{ backgroundColor: tag.bg, color: tag.color }}
             >
               {tag.label}

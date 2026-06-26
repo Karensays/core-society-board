@@ -29,7 +29,7 @@ export function MiniBarChart() {
   const week = getISOWeek(new Date());
 
   return (
-    <div className="rounded-card border border-border bg-card px-4 py-3.5">
+    <div className="cs-card px-[18px] py-4">
       {/* En-tête */}
       <div className="flex items-baseline justify-between">
         <h3 className="text-[11px] font-[600] text-ink">Séances cette semaine</h3>
@@ -46,10 +46,15 @@ export function MiniBarChart() {
             <div key={d.day} className="flex flex-1 flex-col items-center gap-1.5">
               <div className="flex w-full items-end" style={{ height: "56px" }}>
                 <div
-                  className="w-full rounded-t-[3px]"
+                  className="w-full"
                   style={{
                     height: `${barHeight}px`,
                     backgroundColor: BAR_COLOR[d.state],
+                    borderRadius: "4px 4px 0 0",
+                    boxShadow:
+                      d.state === "today"
+                        ? "0 -3px 10px rgba(28,66,189,0.35)"
+                        : undefined,
                   }}
                 />
               </div>
@@ -70,7 +75,7 @@ export function MiniBarChart() {
         <span className="text-[9px] font-[400] text-muted">
           {seancesCount} séances · {participantsTotal} participants
         </span>
-        <span className="text-[9px] font-[600] text-blue">
+        <span className="text-[9px] font-[700] text-blue">
           Prochain cours {nextCours.time} · {nextCours.places} places
         </span>
       </div>

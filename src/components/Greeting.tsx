@@ -9,12 +9,15 @@ export function Greeting() {
   }).format(new Date());
 
   return (
-    <section className="border-b border-border bg-card px-4 py-5">
-      <h1 className="text-[22px] leading-tight">
-        <span className="font-[700] text-ink">Bonjour, </span>
-        <span className="font-[300] text-[#aaa]">Karen.</span>
+    <section style={{ padding: "4px 0 8px" }}>
+      <h1
+        className="leading-tight"
+        style={{ fontSize: "26px", letterSpacing: "-0.03em" }}
+      >
+        <span className="font-[800] text-ink">Bonjour, </span>
+        <span className="font-[300] text-blue">Karen.</span>
       </h1>
-      <p className="mt-1 text-[9px] font-[400] uppercase tracking-[0.12em] capitalize text-muted-light">
+      <p className="mt-1 text-[11px] font-[400] italic capitalize text-[#aaa]">
         {today}
       </p>
     </section>

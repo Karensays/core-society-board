@@ -49,23 +49,35 @@ export function KPICard({
     <div
       className={
         isPrimary
-          ? "flex flex-col rounded-card bg-blue px-4 py-3.5 text-card"
-          : "flex flex-col rounded-card border border-border bg-card px-4 py-3.5"
+          ? "flex flex-col rounded-[10px] px-4 py-3.5 text-white"
+          : "cs-card flex flex-col px-4 py-3.5"
+      }
+      style={
+        isPrimary
+          ? {
+              backgroundColor: "#1C42BD",
+              backgroundImage:
+                "radial-gradient(circle at 80% 20%, rgba(255,255,255,0.1) 0%, transparent 60%)",
+              boxShadow: "0 4px 16px rgba(28,66,189,0.25)",
+            }
+          : undefined
       }
     >
       <p
-        className={`text-[10px] font-[500] ${
-          isPrimary ? "text-blue-mid" : "text-muted"
-        }`}
+        className="text-[10px] font-[600]"
+        style={{ color: isPrimary ? "rgba(255,255,255,0.6)" : "#bbb" }}
       >
         {label}
       </p>
 
       <div className="mt-1.5 flex items-baseline gap-1.5">
         <span
-          className={`font-[700] leading-none ${
-            isPrimary ? "text-[28px]" : "text-[22px] text-ink"
-          }`}
+          className="font-[800] leading-none"
+          style={
+            isPrimary
+              ? { fontSize: "32px", letterSpacing: "-0.04em" }
+              : { fontSize: "24px", letterSpacing: "-0.03em", fontWeight: 700 }
+          }
         >
           {value}
           {unit && (
@@ -75,7 +87,7 @@ export function KPICard({
 
         {trend && (
           <span
-            className="flex items-center gap-0.5 text-[10px] font-[600] leading-none"
+            className="flex items-center gap-0.5 text-[11px] font-[600] leading-none"
             style={{ color: trendColor }}
           >
             {TrendIcon && <TrendIcon size={11} strokeWidth={2.5} />}
@@ -86,9 +98,8 @@ export function KPICard({
 
       {baseline && (
         <p
-          className={`mt-2 text-[9px] font-[400] ${
-            isPrimary ? "text-blue-mid" : "text-muted-light"
-          }`}
+          className="mt-2 text-[10px] font-[400] italic"
+          style={{ color: isPrimary ? "rgba(255,255,255,0.5)" : "#bbb" }}
         >
           {baseline}
         </p>

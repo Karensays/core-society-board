@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 :root {
-  --background: #f5f5f3; /* Fond page */
+  --background: #f0f0ec; /* Fond page — Piste A */
   --foreground: #1a1a1a; /* Noir texte */
 }
 
@@ -18,4 +18,16 @@ body {
   font-family: var(--font-poppins), system-ui, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  /* La nav est fixe ; chaque vue gère son propre scroll interne. */
+  overflow: hidden;
+}
+
+@layer components {
+  /* Surface carte standard — Piste A */
+  .cs-card {
+    background: #ffffff;
+    border: 1px solid #e4e4e0;
+    border-radius: 10px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+  }
 }

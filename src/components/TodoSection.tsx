@@ -6,7 +6,7 @@ import { TodoItem } from "./TodoItem";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <span className="text-[9px] font-[600] uppercase tracking-[0.12em] text-muted-light">
+    <span className="text-[10px] font-[700] uppercase tracking-[0.16em] text-blue">
       {children}
     </span>
   );
@@ -104,7 +104,7 @@ export function TodoSection() {
   const pending = todos.filter((t) => t.status !== "done").length;
 
   return (
-    <section className="rounded-card border border-border bg-card px-4 py-3.5">
+    <section className="cs-card px-[18px] py-4">
       {/* Header */}
       <div className="flex items-center justify-between">
         <SectionLabel>To-do</SectionLabel>
@@ -144,15 +144,7 @@ export function TodoSection() {
             name="text"
             placeholder="Nouvelle tâche..."
             required
-            style={{
-              width: "100%",
-              fontSize: "11px",
-              padding: "7px 10px",
-              border: "1px solid #e8e8e4",
-              borderRadius: "6px",
-              fontFamily: "inherit",
-              outline: "none",
-            }}
+            className="w-full rounded-[6px] border-[1.5px] border-[#e8e8e4] px-2.5 py-[7px] text-[11px] outline-none focus:border-blue"
           />
           <div style={{ display: "flex", gap: "8px" }}>
             <div style={{ display: "flex", flexDirection: "column", gap: "4px", flex: 1 }}>
@@ -211,7 +203,7 @@ export function TodoSection() {
             type="submit"
             style={{
               alignSelf: "flex-start",
-              fontSize: "11px",
+              fontSize: "12px",
               fontWeight: 600,
               color: "#ffffff",
               background: "#1C42BD",

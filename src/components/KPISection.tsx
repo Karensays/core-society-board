@@ -16,12 +16,13 @@ const SECONDARY = [
 
 function MiniStat({ label, value, sub }: { label: string; value: string; sub: string }) {
   return (
-    <div className="flex flex-col rounded-card border border-border bg-card px-3.5 py-3">
-      <p className="text-[9px] font-[500] uppercase tracking-[0.08em] text-muted-light">
+    <div className="cs-card flex flex-col px-3.5 py-3">
+      <p className="text-[9px] font-[700] uppercase tracking-[0.08em] text-blue">
         {label}
       </p>
       <p className="mt-1 text-[19px] font-[700] leading-none text-ink">{value}</p>
       <p className="mt-1.5 text-[9px] font-[400] text-[#ccc]">{sub}</p>
+      <p className="text-[9px] font-[400] italic text-[#ccc]">depuis le 1er juin</p>
     </div>
   );
 }
@@ -31,12 +32,12 @@ export function KPISection() {
 
   return (
     <section>
-      <h2 className="mb-2.5 text-[9px] font-[600] uppercase tracking-[0.12em] text-muted-light">
-        Chiffres clés · {KPI_DATA.month}
+      <h2 className="mb-2.5 text-[10px] font-[700] uppercase tracking-[0.16em] text-blue">
+        Chiffres clés · {KPI_DATA.month} · mois en cours
       </h2>
 
       {/* Grille hero — 4 KPICard */}
-      <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-2">
+      <div className="grid grid-cols-[2fr_1fr_1fr_1fr] gap-2.5">
         <KPICard
           variant="primary"
           label="Chiffre d'affaires"
@@ -71,7 +72,7 @@ export function KPISection() {
       </div>
 
       {/* Grille secondaire — breakdown revenus */}
-      <div className="mt-2 grid grid-cols-4 gap-2">
+      <div className="mt-2.5 grid grid-cols-4 gap-2.5">
         {SECONDARY.map((stat) => (
           <MiniStat key={stat.label} {...stat} />
         ))}

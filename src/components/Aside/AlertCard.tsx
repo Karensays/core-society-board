@@ -31,7 +31,7 @@ export function AlertCard({ type, title, body }: AlertCardProps) {
         padding: "8px 10px",
       }}
     >
-      <p style={{ fontSize: "10px", fontWeight: 700, color: s.title }}>{title}</p>
+      <p style={{ fontSize: "11px", fontWeight: 700, color: s.title }}>{title}</p>
       <p style={{ fontSize: "9px", fontWeight: 400, color: s.body, marginTop: "2px" }}>
         {body}
       </p>

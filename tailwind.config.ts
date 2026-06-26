@@ -16,7 +16,7 @@ const config: Config = {
           mid: "#C5D2F7", // Blue mid (bars)
         },
         ink: "#1A1A1A", // Noir texte
-        page: "#F5F5F3", // Fond page
+        page: "#f0f0ec", // Fond page — Piste A
         card: "#FFFFFF", // Fond blanc
         border: {
           DEFAULT: "#E8E8E4", // Border
