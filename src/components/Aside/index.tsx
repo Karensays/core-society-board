@@ -1,66 +1,98 @@
+import { ExternalLink } from "lucide-react";
 import { AGENTS } from "@/data/agents";
 import { TOOLS } from "@/data/tools";
-
-// Aside — colonne droite 210px, sticky sous la TopBar (CLAUDE.md section 3).
-// Base structurelle V1 : les composants détaillés (AgentRow, AlertCard, ToolRow)
-// seront étoffés dans une session ultérieure.
-
-const STATUS_DOT: Record<string, string> = {
-  online: "bg-success",
-  warning: "bg-warning",
-  offline: "bg-urgent",
-};
+import { AgentRow } from "./AgentRow";
+import { AlertCard } from "./AlertCard";
+import { ToolRow } from "./ToolRow";
 
 function SectionLabel({ children }: { children: React.ReactNode }) {
   return (
-    <p className="mb-2 text-[9px] font-[600] uppercase tracking-[0.12em] text-muted-light">
+    <p className="mb-2 text-[9px] font-[600] uppercase tracking-[0.12em] text-[#bbb]">
       {children}
     </p>
   );
 }
 
+function Divider() {
+  return <div style={{ height: "1px", background: "#e8e8e4", margin: "14px 0" }} />;
+}
+
+const QUICK_LINKS = [
+  { label: "Bsport", href: "https://backoffice.bsport.io" },
+  { label: "MMA platform", href: "https://core-society-mma.vercel.app" },
+  { label: "Dashboard finances", href: "https://compta.coresociety.fr" },
+  { label: "Instagram", href: "https://instagram.com/coresociety_fr" },
+  { label: "coresociety.fr", href: "https://coresociety.fr" },
+];
+
 export function Aside() {
   return (
-    <aside className="sticky top-9 hidden w-[210px] shrink-0 self-start border-l border-border bg-card p-4 md:block">
-      {/* Équipe IA */}
+    <aside className="sticky top-9 w-[210px] shrink-0 self-start border-l border-border bg-card p-4">
+      {/* Bloc 1 — Équipe IA */}
       <SectionLabel>Équipe IA</SectionLabel>
-      <ul className="mb-6 flex flex-col gap-1.5">
-        {AGENTS.map((agent) => (
-          <li
+      <div className="flex flex-col gap-0.5">
+        {AGENTS.map((agent, i) => (
+          <AgentRow
             key={agent.code}
-            className="flex items-center gap-2 rounded-agent px-1 py-1"
-          >
-            <span
-              className={`h-1.5 w-1.5 shrink-0 rounded-full ${STATUS_DOT[agent.status]}`}
-            />
-            <span className="text-[11px] font-[500] text-ink">{agent.name}</span>
-            <span className="ml-auto text-[9px] font-[600] uppercase tracking-[0.08em] text-muted-light">
-              {agent.code}
-            </span>
-          </li>
+            code={agent.code}
+            name={agent.name}
+            role={agent.role}
+            status={agent.status as "online" | "warning"}
+            active={i === 0}
+          />
         ))}
-      </ul>
+      </div>
 
-      {/* Alertes */}
+      <Divider />
+
+      {/* Bloc 2 — Alertes */}
       <SectionLabel>Alertes</SectionLabel>
-      <p className="mb-6 text-[11px] font-[400] text-muted">Aucune alerte.</p>
+      <div className="flex flex-col gap-2">
+        <AlertCard
+          type="warning"
+          title="CFO · Attention"
+          body="Relevé BRED mai non importé. Données juin partielles."
+        />
+        <AlertCard
+          type="info"
+          title="COO · Prochain cours"
+          body="09:00 aujourd'hui · 3 places restantes"
+        />
+      </div>
 
-      {/* Santé outils */}
-      <SectionLabel>Santé outils</SectionLabel>
-      <ul className="mb-6 flex flex-col gap-1.5">
-        {TOOLS.map((tool) => (
-          <li key={tool.name} className="flex items-center gap-2 px-1 py-1">
-            <span
-              className={`h-1.5 w-1.5 shrink-0 rounded-full ${STATUS_DOT[tool.status]}`}
-            />
-            <span className="text-[11px] font-[500] text-ink">{tool.name}</span>
-          </li>
+      <Divider />
+
+      {/* Bloc 3 — Santé des outils */}
+      <SectionLabel>Santé des outils</SectionLabel>
+      <div>
+        {TOOLS.map((tool, i) => (
+          <ToolRow
+            key={tool.name}
+            name={tool.name}
+            status={tool.status as "online" | "warning"}
+            last={i === TOOLS.length - 1}
+          />
         ))}
-      </ul>
+      </div>
 
-      {/* Accès rapide */}
+      <Divider />
+
+      {/* Bloc 4 — Accès rapide */}
       <SectionLabel>Accès rapide</SectionLabel>
-      <p className="text-[11px] font-[400] text-muted">—</p>
+      <div className="flex flex-col gap-2">
+        {QUICK_LINKS.map((link) => (
+          <a
+            key={link.href}
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-1.5 text-[10px] font-[500] text-[#1C42BD] transition-opacity hover:opacity-70"
+          >
+            <ExternalLink size={11} strokeWidth={2} />
+            {link.label}
+          </a>
+        ))}
+      </div>
     </aside>
   );
 }
