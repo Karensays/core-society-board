@@ -19,7 +19,11 @@ function getISOWeek(date: Date): number {
 }
 
 export function MiniBarChart() {
-  const maxValue = Math.max(...weekActivity.map((d) => d.value), 1);
+  // Max calculé sur les jours passés/aujourd'hui (on exclut les jours future)
+  const maxValue = Math.max(
+    ...weekActivity.filter((d) => d.state !== "future").map((d) => d.value),
+    1,
+  );
   const seancesCount = weekActivity.filter((d) => d.value > 0).length;
   const participantsTotal = weekActivity.reduce((sum, d) => sum + d.value, 0);
   const week = getISOWeek(new Date());
@@ -33,27 +37,32 @@ export function MiniBarChart() {
       </div>
 
       {/* Barres */}
-      <div className="mt-3 flex h-16 items-end gap-2">
-        {weekActivity.map((d) => (
-          <div key={d.day} className="flex flex-1 flex-col items-center gap-1.5">
-            <div className="flex h-14 w-full items-end">
-              <div
-                className="w-full rounded-t-[3px]"
-                style={{
-                  height: `${(d.value / maxValue) * 100}%`,
-                  backgroundColor: BAR_COLOR[d.state],
-                }}
-              />
+      <div className="mt-3 flex items-end gap-2">
+        {weekActivity.map((d) => {
+          // Hauteur en pixels proportionnelle au max (jours future = 0)
+          const barHeight =
+            d.state === "future" ? 0 : (d.value / maxValue) * 56;
+          return (
+            <div key={d.day} className="flex flex-1 flex-col items-center gap-1.5">
+              <div className="flex w-full items-end" style={{ height: "56px" }}>
+                <div
+                  className="w-full rounded-t-[3px]"
+                  style={{
+                    height: `${barHeight}px`,
+                    backgroundColor: BAR_COLOR[d.state],
+                  }}
+                />
+              </div>
+              <span
+                className={`text-[9px] font-[500] ${
+                  d.state === "today" ? "text-blue" : "text-[#ccc]"
+                }`}
+              >
+                {d.day}
+              </span>
             </div>
-            <span
-              className={`text-[9px] font-[500] ${
-                d.state === "today" ? "text-blue" : "text-[#ccc]"
-              }`}
-            >
-              {d.day}
-            </span>
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       {/* Footer */}
