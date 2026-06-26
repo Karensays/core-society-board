@@ -3,6 +3,7 @@ import { Greeting } from "@/components/Greeting";
 import { Aside } from "@/components/Aside";
 import { KPISection } from "@/components/KPISection";
 import { MiniBarChart } from "@/components/MiniBarChart";
+import { TodoSection } from "@/components/TodoSection";
 
 export default function Home() {
   return (
@@ -17,7 +18,7 @@ export default function Home() {
           <main className="flex flex-1 flex-col gap-3 p-4">
             <KPISection />
             <MiniBarChart />
-            {/* TodoSection : session suivante */}
+            <TodoSection />
           </main>
           <Aside />
         </div>
