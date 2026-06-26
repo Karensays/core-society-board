@@ -1,6 +1,8 @@
 import { TopBar } from "@/components/TopBar";
 import { Greeting } from "@/components/Greeting";
 import { Aside } from "@/components/Aside";
+import { KPISection } from "@/components/KPISection";
+import { MiniBarChart } from "@/components/MiniBarChart";
 
 export default function Home() {
   return (
@@ -12,8 +14,10 @@ export default function Home() {
         <Greeting />
 
         <div className="flex flex-row items-start">
-          <main className="flex-1 p-4">
-            {/* KPI Hero, KPI secondaire, MiniBarChart et Todo : sessions suivantes */}
+          <main className="flex flex-1 flex-col gap-3 p-4">
+            <KPISection />
+            <MiniBarChart />
+            {/* TodoSection : session suivante */}
           </main>
           <Aside />
         </div>
